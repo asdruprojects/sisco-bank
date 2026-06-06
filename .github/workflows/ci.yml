@@ -94,10 +94,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: yarn
 
       - name: Install yarn dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       - name: Run tests
         env:
@@ -134,10 +133,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: yarn
 
       - name: Install yarn dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
       - name: Run System Tests
         env:
