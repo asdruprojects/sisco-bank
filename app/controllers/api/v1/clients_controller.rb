@@ -2,7 +2,7 @@ module Api
   module V1
     class ClientsController < ApplicationController
       skip_before_action :verify_authenticity_token
-      before_action :set_client, only: [:show, :update, :destroy]
+      before_action :set_client, only: [ :show, :update, :destroy ]
 
       rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
@@ -53,9 +53,9 @@ module Api
       def client_params
         params.require(:client).permit(
           :person_type, :email, :phone_primary, :phone_secondary,
-          documents_attributes:      [:id, :document_type, :document_number, :issued_at, :expires_at],
-          natural_person_attributes: [:id, :full_name],
-          legal_entity_attributes:   [:id, :company_name]
+          documents_attributes: [ :id, :document_type, :document_number, :issued_at, :expires_at ],
+          natural_person_attributes: [ :id, :full_name ],
+          legal_entity_attributes: [ :id, :company_name ],
         )
       end
     end
