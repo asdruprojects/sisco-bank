@@ -10,7 +10,7 @@ class CreateDocuments < ActiveRecord::Migration[8.0]
       t.timestamps
     end
 
-    add_index :documents, [:document_type, :document_number], unique: true
+    add_index :documents, [ :document_type, :document_number ], unique: true
     add_check_constraint :documents, "document_type IN ('cedula', 'pasaporte', 'rif')", name: 'check_document_type'
   end
 end
