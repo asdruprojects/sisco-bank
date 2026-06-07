@@ -141,3 +141,16 @@ app/
 | `documents` | Documentos del cliente (cédula, pasaporte, RIF) |
 | `natural_people` | Nombre completo (persona natural) |
 | `legal_entities` | Razón social (persona jurídica) |
+
+## Decisiones de diseño
+
+### Patrón Supertipo/Subtipo
+Se optó por tablas separadas `natural_people` y `legal_entities` 
+en lugar de campos directamente en `clients` por dos razones:
+
+1. **Normalización** — cada entidad tiene atributos distintos 
+   (nombre completo vs razón social) que no aplican a ambos tipos.
+
+2. **Escalabilidad** — si en el futuro una persona natural o juridica requiere 
+   campos adicionales, se agregan  a su tabla sin afectar la estructura 
+   general de clientes.
