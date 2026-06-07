@@ -3,7 +3,7 @@
 <div data-controller="delete-confirm">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="h3 mb-0">Clientes</h1>
-    <%= link_to new_client_path, class: "btn btn-primary" do %>
+    <%= link_to new_client_path, class: "btn btn-secondary" do %>
       <i class="bi bi-plus-lg me-1"></i> Nuevo cliente
     <% end %>
   </div>
@@ -29,7 +29,7 @@
           </div>
           <div class="col-md-2">
             <div class="d-flex gap-2">
-              <%= f.submit "Filtrar", class: "btn btn-primary flex-fill" %>
+              <%= f.submit "Filtrar", class: "btn btn-secondary flex-fill" %>
               <%= link_to clients_path, class: "btn btn-outline-secondary", title: "Limpiar filtros" do %>
                 <i class="bi bi-arrow-counterclockwise"></i>
               <% end %>
@@ -62,7 +62,7 @@
                   <% if client.person_type == "natural" %>
                     <span class="badge text-bg-info">Natural</span>
                   <% else %>
-                    <span class="badge text-bg-secondary">Jurídica</span>
+                    <span class="badge text-bg-success">Jurídica</span>
                   <% end %>
                 </td>
                 <td><%= client.email %></td>
