@@ -23,8 +23,8 @@ default: &default
 development:
   <<: *default
   database: sisco_bank_development
-  username: asdrubal
-  password:
+  username: <%= ENV["DATABASE_USER"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public

@@ -3,15 +3,23 @@ class Document < ApplicationRecord
 
   TYPES = %w[cedula pasaporte rif].freeze
 
-  validates :document_type, presence: true, inclusion: { in: TYPES }
-  validates :document_number, presence: true,
+  validate :document_type_valid
+  validates :document_number, presence: { message: "es obligatorio" },
             uniqueness: { scope: :document_type, message: "ya está registrado para este tipo de documento" }
-  validates :issued_at, presence: true
-  validates :expires_at, presence: true
+  validates :issued_at, presence: { message: "es obligatoria" }
+  validates :expires_at, presence: { message: "es obligatoria" }
 
   validate :expires_after_issued
 
   private
+
+  def document_type_valid
+    if document_type.blank?
+      errors.add(:document_type, "es obligatorio")
+    elsif !TYPES.include?(document_type)
+      errors.add(:document_type, "debe ser cédula, pasaporte o RIF")
+    end
+  end
 
   def expires_after_issued
     return unless issued_at && expires_at

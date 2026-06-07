@@ -1,0 +1,28 @@
+es:
+  activerecord:
+    models:
+      client: Cliente
+      document: Documento
+      natural_person: Persona natural
+      legal_entity: Persona jurídica
+    attributes:
+      document:
+        document_type: Tipo de documento
+        document_number: Número de documento
+        issued_at: Fecha de emisión
+        expires_at: Fecha de vencimiento
+      natural_person:
+        full_name: Nombre completo
+      legal_entity:
+        company_name: Razón social
+      client:
+        person_type: Tipo de persona
+        email: Correo electrónico
+        phone_primary: Teléfono principal
+        phone_secondary: Teléfono secundario
+  errors:
+    messages:
+      blank: no puede estar en blanco
+      inclusion: no está incluido en la lista
+      taken: ya está en uso
+      invalid: no es válido

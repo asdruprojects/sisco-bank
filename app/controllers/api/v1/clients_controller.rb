@@ -11,7 +11,8 @@ module Api
         clients = clients.search_by_name(params[:name])         if params[:name].present?
         clients = clients.search_by_document(params[:document]) if params[:document].present?
         clients = clients.by_person_type(params[:person_type])  if params[:person_type].present?
-        render json: clients.map(&:as_api_json)
+        clients = paginate(clients)
+        render json: { data: clients.map(&:as_api_json), meta: @pagination }
       end
 
       def show
@@ -19,7 +20,7 @@ module Api
       end
 
       def create
-        client = Client.new(client_params)
+        client = Client.new(create_params)
         if client.save
           render json: client.as_api_json, status: :created
         else
@@ -28,7 +29,7 @@ module Api
       end
 
       def update
-        if @client.update(client_params)
+        if @client.update(update_params)
           render json: @client.as_api_json
         else
           render json: { errors: @client.errors.full_messages }, status: :unprocessable_entity
@@ -50,9 +51,18 @@ module Api
         render json: { error: "Cliente no encontrado" }, status: :not_found
       end
 
-      def client_params
+      def create_params
         params.require(:client).permit(
           :person_type, :email, :phone_primary, :phone_secondary,
+          documents_attributes: [ :id, :document_type, :document_number, :issued_at, :expires_at ],
+          natural_person_attributes: [ :id, :full_name ],
+          legal_entity_attributes: [ :id, :company_name ],
+        )
+      end
+
+      def update_params
+        params.require(:client).permit(
+          :email, :phone_primary, :phone_secondary,
           documents_attributes: [ :id, :document_type, :document_number, :issued_at, :expires_at ],
           natural_person_attributes: [ :id, :full_name ],
           legal_entity_attributes: [ :id, :company_name ],

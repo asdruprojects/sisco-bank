@@ -1,0 +1,37 @@
+<% range = pagination_range(@pagination) %>
+
+<div class="card-footer d-flex flex-wrap justify-content-between align-items-center gap-3 bg-white">
+  <div class="text-muted small">
+    Mostrando <%= range[:from] %>–<%= range[:to] %> de <%= @pagination[:total_count] %> clientes
+  </div>
+
+  <div class="d-flex flex-wrap align-items-center gap-3">
+    <% if @pagination[:total_pages] > 1 %>
+      <nav aria-label="Paginación de clientes">
+        <ul class="pagination pagination-sm mb-0">
+          <li class="page-item <%= "disabled" if @pagination[:page] <= 1 %>">
+            <% if @pagination[:page] > 1 %>
+              <%= link_to "Anterior", clients_path_with_page(@pagination[:page] - 1), class: "page-link" %>
+            <% else %>
+              <span class="page-link">Anterior</span>
+            <% end %>
+          </li>
+
+          <li class="page-item disabled">
+            <span class="page-link">
+              Página <%= @pagination[:page] %> de <%= @pagination[:total_pages] %>
+            </span>
+          </li>
+
+          <li class="page-item <%= "disabled" if @pagination[:page] >= @pagination[:total_pages] %>">
+            <% if @pagination[:page] < @pagination[:total_pages] %>
+              <%= link_to "Siguiente", clients_path_with_page(@pagination[:page] + 1), class: "page-link" %>
+            <% else %>
+              <span class="page-link">Siguiente</span>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+    <% end %>
+  </div>
+</div>

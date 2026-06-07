@@ -20,6 +20,9 @@ module SiscoBank
       g.orm :active_record, primary_key_type: :uuid
     end
 
+    config.i18n.default_locale = :es
+    config.i18n.available_locales = %i[es en]
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
