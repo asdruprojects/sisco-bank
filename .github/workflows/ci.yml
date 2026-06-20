@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Fix bin script permissions
         run: chmod +x bin/*
@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Fix bin script permissions
         run: chmod +x bin/*
@@ -51,7 +51,7 @@ jobs:
       RUBOCOP_CACHE_ROOT: tmp/rubocop
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Fix bin script permissions
         run: chmod +x bin/*
@@ -92,7 +92,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y libpq-dev libvips
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Fix bin script permissions
         run: chmod +x bin/*
